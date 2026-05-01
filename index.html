@@ -15,8 +15,9 @@
   canvas{display:block}
   .ui{position:fixed;inset:0;pointer-events:none;z-index:10}
   .topbar{position:absolute;left:18px;top:18px;display:flex;gap:10px;flex-wrap:wrap;align-items:center;pointer-events:auto}
-  .pill{padding:9px 12px;border-radius:999px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);backdrop-filter:blur(12px);font:700 11px/1 'JetBrains Mono',monospace;letter-spacing:.12em;text-transform:uppercase;color:#ffd86b;box-shadow:0 12px 34px rgba(0,0,0,.22)}
+  .pill{appearance:none;border:none;padding:9px 12px;border-radius:999px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);backdrop-filter:blur(12px);font:700 11px/1 'JetBrains Mono',monospace;letter-spacing:.12em;text-transform:uppercase;color:#ffd86b;box-shadow:0 12px 34px rgba(0,0,0,.22);cursor:pointer;transition:transform .15s ease,filter .15s ease,background .15s ease;text-decoration:none;display:inline-flex;align-items:center;justify-content:center}
   .pill.hot{color:#fff;background:linear-gradient(135deg,rgba(255,93,177,.25),rgba(143,107,255,.18));border-color:rgba(255,93,177,.3)}
+  .pill:hover{transform:translateY(-2px);filter:brightness(1.05)}
   .panel{position:absolute;left:18px;bottom:18px;max-width:640px;padding:18px 18px 16px;border-radius:24px;background:rgba(14,10,23,.72);border:1px solid rgba(255,255,255,.12);backdrop-filter:blur(18px) saturate(150%);box-shadow:0 24px 70px rgba(0,0,0,.4);pointer-events:auto}
   .panel h1{font-size:clamp(2rem,6vw,4.4rem);line-height:.9;letter-spacing:-.07em;text-wrap:balance}
   .panel h1 span{color:#ff5db1}
@@ -47,10 +48,10 @@
 <canvas id="scene"></canvas>
 <div class="ui">
   <div class="topbar">
-    <div class="pill hot">neon love scene</div>
-    <div class="pill">for luke</div>
-    <div class="pill">for dan</div>
-    <div class="pill">extra pazzaz</div>
+    <button class="pill hot" id="sceneBtn" type="button">neon love scene</button>
+    <button class="pill" id="lukeBtn" type="button">for luke</button>
+    <button class="pill" id="danBtn" type="button">for dan</button>
+    <button class="pill" id="sparkBtn" type="button">extra pazzaz</button>
   </div>
 
   <div class="hud">
@@ -89,7 +90,7 @@
   <div class="glow"></div>
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/three@0.184.0/build/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.149.0/build/three.min.js"></script>
 <script>
 (function(){
   const canvas = document.getElementById('scene');
@@ -195,6 +196,10 @@
   let glowBoost = 1;
   const pulseBtn = document.getElementById('pulseBtn');
   const glowBtn = document.getElementById('glowBtn');
+  const sceneBtn = document.getElementById('sceneBtn');
+  const lukeBtn = document.getElementById('lukeBtn');
+  const danBtn = document.getElementById('danBtn');
+  const sparkBtn = document.getElementById('sparkBtn');
 
   function pulse() {
     targetPulse = 1;
@@ -208,6 +213,19 @@
     glowBoost = glowBoost === 1 ? 1.45 : 1;
     scene.fog.far = glowBoost === 1 ? 26 : 32;
     document.body.style.filter = glowBoost === 1 ? 'saturate(1)' : 'saturate(1.15) brightness(1.04)';
+  });
+  sceneBtn.addEventListener('click', pulse);
+  lukeBtn.addEventListener('click', () => {
+    pulse();
+    document.getElementById('love-note').scrollIntoView({ behavior: 'smooth', block: 'center' });
+  });
+  danBtn.addEventListener('click', () => {
+    pulse();
+    document.getElementById('love-note').scrollIntoView({ behavior: 'smooth', block: 'center' });
+  });
+  sparkBtn.addEventListener('click', () => {
+    glowBtn.click();
+    pulse();
   });
 
   window.addEventListener('pointerdown', (e) => {
