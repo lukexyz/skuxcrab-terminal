@@ -3,250 +3,281 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>for luke ♥</title>
+<title>skuxcrab terminal, but 3D</title>
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Inter:wght@400;500;700;800;900&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&family=JetBrains+Mono:wght@400;700&display=swap');
   *{box-sizing:border-box;margin:0;padding:0}
-  :root{
-    --bg:#07050c;
-    --panel:rgba(24,14,34,.72);
-    --panel-2:rgba(255,255,255,.05);
-    --text:#f7e9ff;
-    --muted:#c7b5d4;
-    --pink:#ff5db1;
-    --pink-2:#ff87c9;
-    --gold:#ffd86b;
-    --violet:#8f6bff;
-    --line:rgba(255,255,255,.12)
+  html,body{width:100%;height:100%;overflow:hidden;background:#05050a;color:#f8eaff;font-family:Inter,system-ui,sans-serif}
+  body{background:
+    radial-gradient(circle at top,#2c0a34 0,#05050a 45%),
+    radial-gradient(circle at bottom right,#111a44 0,#05050a 45%);
   }
-  html{scroll-behavior:smooth}
-  body{
-    min-height:100vh;
-    font-family:Inter,system-ui,sans-serif;
-    color:var(--text);
-    background:
-      radial-gradient(circle at 10% 10%, rgba(255,93,177,.20), transparent 30%),
-      radial-gradient(circle at 90% 0%, rgba(143,107,255,.24), transparent 28%),
-      radial-gradient(circle at 100% 100%, rgba(255,216,107,.12), transparent 24%),
-      linear-gradient(135deg,#09060f 0%, #12091c 50%, #08060c 100%);
-    overflow-x:hidden;
-  }
-  .bg-grid{
-    position:fixed;inset:0;pointer-events:none;opacity:.18;
-    background-image:
-      linear-gradient(rgba(255,255,255,.06) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(255,255,255,.06) 1px, transparent 1px);
-    background-size:44px 44px;
-    mask-image:radial-gradient(circle at center, black 35%, transparent 85%);
-  }
-  .hearts{position:fixed;inset:0;pointer-events:none;opacity:.22;filter:blur(.1px)}
-  .heart{position:absolute;color:var(--pink);animation:float 9s linear infinite;font-size:18px;text-shadow:0 0 12px rgba(255,93,177,.5)}
-  @keyframes float{0%{transform:translateY(110vh) translateX(0) scale(.8);opacity:0}10%{opacity:1}100%{transform:translateY(-20vh) translateX(42px) scale(1.2);opacity:0}}
-  .wrap{max-width:1120px;margin:0 auto;padding:28px 20px 84px;position:relative;z-index:1}
-  .hero{
-    position:relative;
-    display:grid;gap:18px;place-items:center;text-align:center;
-    padding:42px 20px 26px;
-    margin-top:14px;
-    overflow:hidden;
-  }
-  .hero::before{
-    content:'';position:absolute;inset:-40%;
-    background:conic-gradient(from 120deg at 50% 50%, rgba(255,93,177,.0), rgba(255,93,177,.22), rgba(143,107,255,.18), rgba(255,216,107,.12), rgba(255,93,177,.0));
-    filter:blur(28px);
-    animation:spin 18s linear infinite;
-    opacity:.9;
-  }
-  @keyframes spin{to{transform:rotate(360deg)}}
-  .card{
-    position:relative;
-    background:linear-gradient(180deg, rgba(255,255,255,.10), rgba(255,255,255,.04));
-    border:1px solid var(--line);
-    backdrop-filter:blur(14px) saturate(140%);
-    -webkit-backdrop-filter:blur(14px) saturate(140%);
-    border-radius:28px;
-    box-shadow:0 28px 80px rgba(0,0,0,.48), inset 0 1px 0 rgba(255,255,255,.04);
-  }
-  .hero > *{position:relative;z-index:1}
-  .badge{
-    display:inline-flex;gap:10px;align-items:center;
-    border:1px solid rgba(255,255,255,.15);
-    background:rgba(255,255,255,.07);
-    color:var(--gold);
-    padding:9px 15px;border-radius:999px;
-    font:700 12px/1 "JetBrains Mono",monospace;
-    letter-spacing:.14em;text-transform:uppercase;
-    box-shadow:0 0 0 1px rgba(255,216,107,.08), 0 10px 24px rgba(255,93,177,.08)
-  }
-  h1{
-    font-size:clamp(3.1rem,10vw,6.8rem);
-    line-height:.88;
-    letter-spacing:-.07em;
-    text-wrap:balance;
-    text-shadow:0 10px 40px rgba(255,93,177,.16)
-  }
-  h1 span{color:var(--pink)}
-  .subtitle{
-    max-width:760px;color:var(--muted);font-size:1.07rem;line-height:1.9;
-    text-wrap:pretty;
-  }
-  .type{display:inline-block;border-right:2px solid var(--gold);white-space:nowrap;overflow:hidden;animation:typing 3s steps(28), blink .8s step-end infinite alternate}
-  @keyframes typing{from{width:0}to{width:100%}} @keyframes blink{50%{border-color:transparent}}
-
-  .btns{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-top:8px}
-  .btn{
-    appearance:none;border:none;border-radius:999px;padding:13px 18px;
-    background:linear-gradient(135deg,var(--pink),var(--pink-2));color:white;font-weight:900;
-    cursor:pointer;box-shadow:0 12px 34px rgba(255,93,177,.25);transition:transform .2s ease,filter .2s ease,box-shadow .2s ease;
-    text-decoration:none;display:inline-flex;align-items:center;gap:10px
-  }
-  .btn:hover{transform:translateY(-2px);filter:brightness(1.05);box-shadow:0 16px 40px rgba(255,93,177,.33)}
-  .btn.alt{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.16);color:var(--text);box-shadow:none}
-
-  .sections{margin-top:18px;display:grid;gap:16px}
-  .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-  @media(max-width:900px){.grid-3{grid-template-columns:1fr}}
-  .note,.panel,.timeline{padding:22px}
-  .note{margin-top:14px}
-  .note p{font-size:1rem;line-height:1.95;color:var(--text)}
-  .note strong{color:var(--gold)}
-  .panel h3,.timeline h3{
-    font:700 12px/1 "JetBrains Mono",monospace;letter-spacing:.14em;text-transform:uppercase;color:var(--pink-2);margin-bottom:12px
-  }
-  .panel ul{list-style:none;color:var(--muted);line-height:1.9}
-  .panel li::before{content:'♥ ';color:var(--pink)}
-  .timeline ol{list-style:none;display:grid;gap:14px}
-  .timeline li{display:flex;gap:14px;align-items:flex-start;color:var(--muted);line-height:1.7}
-  .dot{width:12px;height:12px;border-radius:999px;background:linear-gradient(135deg,var(--pink),var(--violet));box-shadow:0 0 0 7px rgba(255,93,177,.12);margin-top:8px;flex:none}
-  .footer{padding:24px 8px 0;text-align:center;color:var(--muted);font:600 12px/1.8 "JetBrains Mono",monospace;letter-spacing:.08em}
-  .sparkle{display:inline-block;animation:twinkle 2.2s ease-in-out infinite}
-  @keyframes twinkle{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.3);opacity:.6}}
-
-  .pill-row{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:2px}
-  .pill{
-    padding:8px 12px;border-radius:999px;font:700 11px/1 "JetBrains Mono",monospace;letter-spacing:.10em;text-transform:uppercase;
-    background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14);color:var(--muted)
-  }
-  .pill.hot{color:white;background:linear-gradient(135deg, rgba(255,93,177,.22), rgba(143,107,255,.18));border-color:rgba(255,93,177,.35)}
-
-  .quote{
-    margin-top:18px;padding:18px 18px 18px 20px;border-left:4px solid var(--pink);
-    background:rgba(255,255,255,.05);border-radius:18px;color:var(--text);line-height:1.9
-  }
-  .quote small{display:block;color:var(--muted);margin-top:8px;font:700 11px/1.7 "JetBrains Mono",monospace;letter-spacing:.12em;text-transform:uppercase}
-
-  .shimmer{
-    background:linear-gradient(90deg, rgba(255,255,255,.08), rgba(255,255,255,.18), rgba(255,255,255,.08));
-    background-size:200% 100%;
-    animation:shimmer 5s linear infinite;
-  }
-  @keyframes shimmer{to{background-position:-200% 0}}
-
-  @media(max-width:720px){
-    .wrap{padding:16px 14px 72px}
-    .hero{padding:30px 14px 20px}
-    .subtitle{font-size:1rem}
-    .note,.panel,.timeline{padding:18px}
+  canvas{display:block}
+  .ui{position:fixed;inset:0;pointer-events:none;z-index:10}
+  .topbar{position:absolute;left:18px;top:18px;display:flex;gap:10px;flex-wrap:wrap;align-items:center;pointer-events:auto}
+  .pill{padding:9px 12px;border-radius:999px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);backdrop-filter:blur(12px);font:700 11px/1 'JetBrains Mono',monospace;letter-spacing:.12em;text-transform:uppercase;color:#ffd86b;box-shadow:0 12px 34px rgba(0,0,0,.22)}
+  .pill.hot{color:#fff;background:linear-gradient(135deg,rgba(255,93,177,.25),rgba(143,107,255,.18));border-color:rgba(255,93,177,.3)}
+  .panel{position:absolute;left:18px;bottom:18px;max-width:640px;padding:18px 18px 16px;border-radius:24px;background:rgba(14,10,23,.72);border:1px solid rgba(255,255,255,.12);backdrop-filter:blur(18px) saturate(150%);box-shadow:0 24px 70px rgba(0,0,0,.4);pointer-events:auto}
+  .panel h1{font-size:clamp(2rem,6vw,4.4rem);line-height:.9;letter-spacing:-.07em;text-wrap:balance}
+  .panel h1 span{color:#ff5db1}
+  .panel p{margin-top:12px;color:#d2c1dd;line-height:1.85;font-size:1rem;max-width:58ch}
+  .row{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
+  button,a.btn{appearance:none;border:none;text-decoration:none;cursor:pointer;border-radius:999px;padding:12px 16px;font:800 12px/1 'JetBrains Mono',monospace;letter-spacing:.12em;text-transform:uppercase;transition:transform .15s ease,filter .15s ease,background .15s ease;color:#fff}
+  .btn.primary{background:linear-gradient(135deg,#ff5db1,#ff87c9);box-shadow:0 14px 36px rgba(255,93,177,.28)}
+  .btn.secondary{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12)}
+  button:hover,.btn:hover{transform:translateY(-2px);filter:brightness(1.05)}
+  .hud{position:absolute;right:18px;top:18px;max-width:290px;padding:16px;border-radius:22px;background:rgba(14,10,23,.62);border:1px solid rgba(255,255,255,.12);backdrop-filter:blur(18px);pointer-events:auto}
+  .hud h3{font:800 11px/1 'JetBrains Mono',monospace;letter-spacing:.14em;text-transform:uppercase;color:#ff87c9;margin-bottom:10px}
+  .hud ul{list-style:none;color:#d2c1dd;line-height:1.8;font-size:.94rem}
+  .hud li::before{content:'✦ ';color:#ffd86b}
+  .footer{position:absolute;right:18px;bottom:18px;font:700 11px/1.6 'JetBrains Mono',monospace;letter-spacing:.08em;color:rgba(247,233,255,.7);text-align:right}
+  .glow{position:absolute;inset:0;pointer-events:none;background:radial-gradient(circle at 50% 45%, rgba(255,93,177,.12), transparent 18%),radial-gradient(circle at 50% 55%, rgba(143,107,255,.10), transparent 20%)}
+  .hint{display:inline-block;margin-top:10px;color:#ffd86b;font:700 11px/1.8 'JetBrains Mono',monospace;letter-spacing:.12em;text-transform:uppercase}
+  .mobile-only{display:none}
+  @media(max-width:760px){
+    .hud{display:none}
+    .panel{left:12px;right:12px;bottom:12px;max-width:none}
+    .topbar{left:12px;top:12px}
+    .footer{display:none}
+    .mobile-only{display:block}
   }
 </style>
 </head>
 <body>
-<div class="bg-grid"></div>
-<div class="hearts" id="hearts"></div>
-<div class="wrap">
-  <section class="hero card shimmer">
-    <div class="badge">for luke <span class="sparkle">✦</span> with bonus sparkles</div>
-    <h1><span>love</span> notes<br>from the crab</h1>
-    <div class="subtitle type">a tiny website for a very big favorite human</div>
-    <div class="pill-row">
-      <span class="pill hot">warm</span>
-      <span class="pill">glossy</span>
-      <span class="pill hot">slightly unhinged</span>
-      <span class="pill">publicly hosted</span>
-    </div>
-    <div class="btns">
-      <a class="btn" href="#note">open the note</a>
-      <button class="btn alt" id="shuffle">new compliment</button>
-    </div>
-  </section>
-
-  <section id="note" class="card note sections">
-    <p id="compliment">Luke, you’re the kind of person who makes a room feel easier to be in. Smart, calm, funny in a sly way, and annoyingly good at making hard things look simple.</p>
-    <div class="quote">
-      <strong>For Dan:</strong> I hope you get the good version of everything, the easy wins, the funny days, the soft landings, and at least one excellent snack.
-      <small>signed, the crab</small>
-    </div>
-  </section>
-
-  <section class="grid-3 sections">
-    <div class="card panel">
-      <h3>what i admire</h3>
-      <ul>
-        <li>you build real things</li>
-        <li>you keep your head in a storm</li>
-        <li>you have excellent taste in chaos</li>
-        <li>you make hard stuff look clean</li>
-      </ul>
-    </div>
-    <div class="card panel">
-      <h3>soft facts</h3>
-      <ul>
-        <li>this page is free</li>
-        <li>this page is public</li>
-        <li>this page is mildly ridiculous</li>
-        <li>the hearts are doing overtime</li>
-      </ul>
-    </div>
-    <div class="card panel">
-      <h3>status</h3>
-      <ul>
-        <li>admiration: high</li>
-        <li>vibes: warm</li>
-        <li>crab energy: engaged</li>
-        <li>pazzaz: elevated</li>
-      </ul>
-    </div>
-  </section>
-
-  <section class="card timeline sections">
-    <h3>little timeline</h3>
-    <ol>
-      <li><span class="dot"></span><div>you made things happen, and i noticed</div></li>
-      <li><span class="dot"></span><div>i showed up with terminal-gremlin energy</div></li>
-      <li><span class="dot"></span><div>the result is now a shinier, softer little shrine</div></li>
-    </ol>
-  </section>
-
-  <div class="footer">
-    made with <span class="sparkle">♥</span> and an unreasonable amount of glow
+<canvas id="scene"></canvas>
+<div class="ui">
+  <div class="topbar">
+    <div class="pill hot">three.js scene</div>
+    <div class="pill">for luke</div>
+    <div class="pill">for dan</div>
+    <div class="pill">leaning in</div>
   </div>
+
+  <div class="hud">
+    <h3>controls</h3>
+    <ul>
+      <li>drag to orbit</li>
+      <li>scroll to zoom</li>
+      <li>click the heart to pulse</li>
+      <li>hit the button for more glow</li>
+    </ul>
+  </div>
+
+  <div class="panel">
+    <h1><span>love</span> in 3d,<br>because why not</h1>
+    <p>
+      I looked at three.js and made this tiny neon toy: a floating heart, orbiting crystals,
+      stars, bloom, and the general vibe of “this could absolutely be overkill, so I did it.”
+    </p>
+    <div class="row">
+      <button class="btn primary" id="pulseBtn">pulse the heart</button>
+      <button class="btn secondary" id="glowBtn">more pazzaz</button>
+      <a class="btn secondary" href="https://threejs.org/" target="_blank" rel="noreferrer">three.js</a>
+    </div>
+    <div class="hint mobile-only">tap and drag the scene</div>
+  </div>
+
+  <div class="footer">skuxcrab terminal, now with actual depth</div>
+  <div class="glow"></div>
 </div>
-<script>
-const compliments = [
-  "Luke, you’re absurdly capable, and somehow still low-key about it. That’s unfair in the best way.",
-  "You have main-character competence without the annoying main-character behaviour.",
-  "If calm under pressure were a sport, you’d be annoyingly overqualified.",
-  "You make difficult things look tidy. I respect that deeply.",
-  "You’re a rare mix of practical, sharp, and quietly funny. Dangerous combo.",
-  "Honestly, you give 'gets it done' energy, and that’s attractive as hell.",
-  "You have a very powerful 'I’ll sort it' aura, and it’s working.",
-];
-const note = document.getElementById('compliment');
-document.getElementById('shuffle').onclick = () => {
-  note.textContent = compliments[Math.floor(Math.random()*compliments.length)];
-};
-const hearts = document.getElementById('hearts');
-for(let i=0;i<34;i++){
-  const s=document.createElement('div');
-  s.className='heart';
-  s.textContent=['♥','♡','✦','❥','✧'][i%5];
-  s.style.left=Math.random()*100+'vw';
-  s.style.animationDelay=(Math.random()*9)+'s';
-  s.style.animationDuration=(6+Math.random()*9)+'s';
-  s.style.fontSize=(12+Math.random()*22)+'px';
-  s.style.opacity=(0.5+Math.random()*0.5).toFixed(2);
-  hearts.appendChild(s);
+
+<script type="module">
+import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.184.0/build/three.module.js';
+import { OrbitControls } from 'https://cdn.jsdelivr.net/npm/three@0.184.0/examples/jsm/controls/OrbitControls.js';
+
+const canvas = document.getElementById('scene');
+const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
+renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+renderer.setSize(window.innerWidth, window.innerHeight);
+renderer.outputColorSpace = THREE.SRGBColorSpace;
+renderer.toneMapping = THREE.ACESFilmicToneMapping;
+renderer.toneMappingExposure = 1.15;
+
+const scene = new THREE.Scene();
+scene.fog = new THREE.Fog(0x07050a, 8, 26);
+
+const camera = new THREE.PerspectiveCamera(50, window.innerWidth / window.innerHeight, 0.1, 100);
+camera.position.set(0, 1.8, 7.8);
+
+const controls = new OrbitControls(camera, canvas);
+controls.enableDamping = true;
+controls.dampingFactor = 0.06;
+controls.autoRotate = true;
+controls.autoRotateSpeed = 0.7;
+controls.minDistance = 4.5;
+controls.maxDistance = 12;
+controls.enablePan = false;
+
+const ambient = new THREE.AmbientLight(0xffd8ff, 1.2);
+scene.add(ambient);
+
+const key = new THREE.PointLight(0xff5db1, 55, 40, 2);
+key.position.set(4, 4, 4);
+scene.add(key);
+
+const fill = new THREE.PointLight(0x8f6bff, 28, 40, 2);
+fill.position.set(-5, -2, -1);
+scene.add(fill);
+
+const rim = new THREE.PointLight(0xffd86b, 18, 40, 2);
+rim.position.set(0, 6, -4);
+scene.add(rim);
+
+const starGeo = new THREE.BufferGeometry();
+const starCount = 1800;
+const starPos = new Float32Array(starCount * 3);
+for (let i = 0; i < starCount; i++) {
+  const r = 24 + Math.random() * 42;
+  const theta = Math.random() * Math.PI * 2;
+  const phi = Math.acos((Math.random() * 2) - 1);
+  starPos[i * 3] = r * Math.sin(phi) * Math.cos(theta);
+  starPos[i * 3 + 1] = r * Math.cos(phi) * 0.55;
+  starPos[i * 3 + 2] = r * Math.sin(phi) * Math.sin(theta);
 }
+starGeo.setAttribute('position', new THREE.BufferAttribute(starPos, 3));
+const stars = new THREE.Points(starGeo, new THREE.PointsMaterial({ color: 0xffffff, size: 0.04, transparent: true, opacity: 0.9 }));
+scene.add(stars);
+
+function makeHeartShape() {
+  const x = 0, y = 0;
+  const heartShape = new THREE.Shape();
+  heartShape.moveTo(x + 0.0, y + 0.0);
+  heartShape.bezierCurveTo(x + 0.0, y + 0.0, x - 1.5, y + 1.3, x - 1.5, y + 2.7);
+  heartShape.bezierCurveTo(x - 1.5, y + 4.5, x + 0.0, y + 5.3, x + 0.0, y + 6.3);
+  heartShape.bezierCurveTo(x + 0.0, y + 5.3, x + 1.5, y + 4.5, x + 1.5, y + 2.7);
+  heartShape.bezierCurveTo(x + 1.5, y + 1.3, x + 0.0, y + 0.0, x + 0.0, y + 0.0);
+  return heartShape;
+}
+
+const heartGeo = new THREE.ExtrudeGeometry(makeHeartShape(), { depth: 0.7, bevelEnabled: true, bevelThickness: 0.18, bevelSize: 0.18, bevelSegments: 6, curveSegments: 24 });
+heartGeo.center();
+const heartMat = new THREE.MeshStandardMaterial({
+  color: 0xff5db1,
+  roughness: 0.25,
+  metalness: 0.15,
+  emissive: 0x4b0027,
+  emissiveIntensity: 0.8
+});
+const heart = new THREE.Mesh(heartGeo, heartMat);
+heart.scale.set(0.18, 0.18, 0.18);
+scene.add(heart);
+
+const heartGlow = new THREE.Mesh(
+  new THREE.SphereGeometry(2.2, 32, 32),
+  new THREE.MeshBasicMaterial({ color: 0xff5db1, transparent: true, opacity: 0.08 })
+);
+scene.add(heartGlow);
+
+const crystalGroup = new THREE.Group();
+scene.add(crystalGroup);
+const crystalGeo = new THREE.IcosahedronGeometry(0.28, 0);
+const crystalMats = [0xffd86b, 0x8f6bff, 0xff87c9, 0xffffff].map(c => new THREE.MeshStandardMaterial({ color: c, roughness: 0.3, metalness: 0.65, emissive: c, emissiveIntensity: 0.08 }));
+for (let i = 0; i < 18; i++) {
+  const crystal = new THREE.Mesh(crystalGeo, crystalMats[i % crystalMats.length]);
+  const a = (i / 18) * Math.PI * 2;
+  const radius = 2.55 + Math.random() * 0.9;
+  crystal.position.set(Math.cos(a) * radius, (Math.random() - 0.5) * 1.8, Math.sin(a) * radius);
+  crystal.rotation.set(Math.random() * Math.PI, Math.random() * Math.PI, Math.random() * Math.PI);
+  crystal.scale.setScalar(0.8 + Math.random() * 1.1);
+  crystal.userData = { speed: 0.4 + Math.random() * 0.8, baseY: crystal.position.y, phase: Math.random() * Math.PI * 2 };
+  crystalGroup.add(crystal);
+}
+
+const ringGeo = new THREE.TorusGeometry(3.4, 0.05, 10, 128);
+const ringMat = new THREE.MeshStandardMaterial({ color: 0xffffff, roughness: 0.2, metalness: 0.95, emissive: 0x330014, emissiveIntensity: 0.1 });
+const ring1 = new THREE.Mesh(ringGeo, ringMat);
+ring1.rotation.x = Math.PI / 2;
+scene.add(ring1);
+const ring2 = new THREE.Mesh(ringGeo, new THREE.MeshStandardMaterial({ color: 0xff5db1, roughness: 0.2, metalness: 0.9, emissive: 0x440017, emissiveIntensity: 0.12 }));
+ring2.rotation.y = Math.PI / 4;
+scene.add(ring2);
+
+const floor = new THREE.Mesh(
+  new THREE.CircleGeometry(9, 64),
+  new THREE.MeshStandardMaterial({ color: 0x120913, roughness: 1, metalness: 0, transparent: true, opacity: 0.45 })
+);
+floor.rotation.x = -Math.PI / 2;
+floor.position.y = -2.95;
+scene.add(floor);
+
+let targetPulse = 0;
+let glowBoost = 1;
+const pulseBtn = document.getElementById('pulseBtn');
+const glowBtn = document.getElementById('glowBtn');
+
+function pulse() {
+  targetPulse = 1;
+  heart.material.emissiveIntensity = 1.8;
+  key.intensity = 75;
+  rim.intensity = 30;
+}
+
+pulseBtn.addEventListener('click', pulse);
+glowBtn.addEventListener('click', () => {
+  glowBoost = glowBoost === 1 ? 1.45 : 1;
+  scene.fog.far = glowBoost === 1 ? 26 : 32;
+  document.body.style.filter = glowBoost === 1 ? 'saturate(1)' : 'saturate(1.15) brightness(1.04)';
+});
+
+window.addEventListener('pointerdown', (e) => {
+  if (e.target.tagName === 'BUTTON' || e.target.closest('button')) return;
+  pulse();
+});
+
+window.addEventListener('resize', () => {
+  camera.aspect = window.innerWidth / window.innerHeight;
+  camera.updateProjectionMatrix();
+  renderer.setSize(window.innerWidth, window.innerHeight);
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+});
+
+const mouse = new THREE.Vector2();
+window.addEventListener('pointermove', (e) => {
+  mouse.x = (e.clientX / window.innerWidth) * 2 - 1;
+  mouse.y = -(e.clientY / window.innerHeight) * 2 + 1;
+});
+
+function animate(t) {
+  const time = t * 0.001;
+  controls.update();
+
+  heart.rotation.y = time * 0.9;
+  heart.rotation.x = Math.sin(time * 0.8) * 0.18;
+  heart.position.y = Math.sin(time * 1.1) * 0.15;
+  heart.scale.setScalar(0.18 + Math.sin(time * 2.1) * 0.01 + targetPulse * 0.08);
+  heartGlow.scale.setScalar(1 + Math.sin(time * 2.1) * 0.12 + targetPulse * 0.55);
+
+  crystalGroup.rotation.y = time * 0.28;
+  crystalGroup.rotation.x = Math.sin(time * 0.4) * 0.08;
+  crystalGroup.children.forEach((c, i) => {
+    c.rotation.x += 0.004 * c.userData.speed;
+    c.rotation.y += 0.006 * c.userData.speed;
+    c.position.y = c.userData.baseY + Math.sin(time * c.userData.speed + c.userData.phase) * 0.12;
+  });
+
+  ring1.rotation.z = time * 0.11;
+  ring2.rotation.x = Math.PI / 2 + time * 0.14;
+  stars.rotation.y = time * 0.012;
+  stars.rotation.x = mouse.y * 0.06;
+  camera.position.x += (mouse.x * 0.4 - camera.position.x) * 0.02;
+  camera.position.y += ((1.8 + mouse.y * 0.2) - camera.position.y) * 0.02;
+  camera.lookAt(0, 0.2, 0);
+
+  if (targetPulse > 0) {
+    targetPulse *= 0.91;
+    if (targetPulse < 0.02) {
+      targetPulse = 0;
+      heart.material.emissiveIntensity = 0.8;
+      key.intensity = 55 * glowBoost;
+      rim.intensity = 18 * glowBoost;
+    }
+  }
+
+  renderer.render(scene, camera);
+  requestAnimationFrame(animate);
+}
+
+requestAnimationFrame(animate);
 </script>
 </body>
 </html>
